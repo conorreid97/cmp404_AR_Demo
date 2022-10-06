@@ -3,3 +3,9 @@
 
 #include "CustomGameState.h"
 
+ACustomGameState::ACustomGameState()
+{
+	Score = 0;
+	
+}
+

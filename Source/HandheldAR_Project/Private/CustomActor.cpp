@@ -37,7 +37,7 @@ void ACustomActor::Tick(float DeltaTime)
 
 	
 
-	// making the actor mov in the path of infinity symbol
+	// making the actor move in the path of infinity symbol
 	float t = UGameplayStatics::GetRealTimeSeconds(GetWorld());
 	float scale = 2 / (3 - cos(2 * t));
 	float x = scale * cos(t);
