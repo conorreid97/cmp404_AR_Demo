@@ -6,6 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "CustomARPawn.h"
 #include "CustomGameState.h"
+#include "CustomActor.h"
 #include "CustomGameMode.generated.h"
 
 /**
@@ -28,4 +29,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Score")
 		void SetScore(int32 NewScore);
 	
+	UFUNCTION(BlueprintCallable, Category = "Spawnable")
+		void SpawnCube();
 };

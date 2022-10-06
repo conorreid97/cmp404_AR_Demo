@@ -19,6 +19,8 @@ void ACustomGameMode::StartPlay()
 	
 	// This function will transcend to call BeginPlay on all the actors
 	Super::StartPlay();
+
+	SpawnCube();
 }
 
 int32 ACustomGameMode::GetScore()
@@ -31,3 +33,12 @@ void ACustomGameMode::SetScore(int32 NewScore)
 {
 	GetGameState<ACustomGameState>()->Score += NewScore;
 }
+
+void ACustomGameMode::SpawnCube()
+{
+	FActorSpawnParameters SpawnInfo;
+	FRotator myRot(0, 0, 0);
+	FVector myLoc(300, 0, 0);
+	ACustomActor* customActor = GetWorld()->SpawnActor<ACustomActor>(myLoc, myRot, SpawnInfo);
+}
+

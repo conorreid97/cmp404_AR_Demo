@@ -12,8 +12,13 @@ ACustomActor::ACustomActor()
 
 	SceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("SceneComponent"));
 	SetRootComponent(SceneComponent);
+	
 	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
 	StaticMeshComponent->SetupAttachment(SceneComponent);
+	
+	// Find the Cube Asset and assign it using C++ (Right click on object in the Content Drawer to get Reference string)
+	auto MeshAsset = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("StaticMesh'/Engine/BasicShapes/Cube.Cube'"));
+	StaticMeshComponent->SetStaticMesh(MeshAsset.Object);
 }
 
 // Called when the game starts or when spawned
