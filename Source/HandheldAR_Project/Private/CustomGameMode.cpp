@@ -10,6 +10,8 @@ ACustomGameMode::ACustomGameMode()
 	
 	// Activates the tick function
 	PrimaryActorTick.bCanEverTick = true;
+
+
 }
 
 void ACustomGameMode::StartPlay()
@@ -20,7 +22,22 @@ void ACustomGameMode::StartPlay()
 	// This function will transcend to call BeginPlay on all the actors
 	Super::StartPlay();
 
-	SpawnCube();
+	
+
+	// spawn cube every 4 seconds
+	GetWorldTimerManager().SetTimer(Ticker, this, &ACustomGameMode::SpawnCube, 4.0f, true, 0.0f);
+
+	//SpawnCube();
+	
+	
+	
+}
+
+void ACustomGameMode::Tick(float DeltaSeconds)
+{
+	//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Purple, FString::Printf(TEXT("SPAWNED")));
+	//GetWorldTimerManager().SetTimer(Ticker, this, &ACustomGameMode::SpawnCube, 4.0f, true, 0.0f);
+
 }
 
 int32 ACustomGameMode::GetScore()
@@ -36,9 +53,17 @@ void ACustomGameMode::SetScore(int32 NewScore)
 
 void ACustomGameMode::SpawnCube()
 {
+	APlayerCameraManager* camManager = GetWorld()->GetFirstPlayerController()->PlayerCameraManager;
+	FVector camLocation = camManager->GetCameraLocation();
+	FVector camForward = camManager->GetCameraRotation().Vector();
+
 	FActorSpawnParameters SpawnInfo;
 	FRotator myRot(0, 0, 0);
-	FVector myLoc(300, 0, 0);
+	FVector myLoc(camLocation.X, camLocation.Y, camLocation.Z);
 	ACustomActor* customActor = GetWorld()->SpawnActor<ACustomActor>(myLoc, myRot, SpawnInfo);
+
+
+	//GetWorldTimerManager().SetTimer(Ticker, this, &ACustomGameMode::SpawnCube, 4.0f, true, 0.0f);
+
 }
 

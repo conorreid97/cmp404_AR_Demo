@@ -7,6 +7,7 @@
 #include "CustomARPawn.h"
 #include "CustomGameState.h"
 #include "CustomActor.h"
+
 #include "CustomGameMode.generated.h"
 
 /**
@@ -23,6 +24,8 @@ public:
 		
 	virtual void StartPlay();
 	
+	virtual void Tick(float DeltaSeconds);
+
 	UFUNCTION(BlueprintCallable, Category = "Score")
 		int32 GetScore();
 	
@@ -31,4 +34,6 @@ public:
 	
 	UFUNCTION(BlueprintCallable, Category = "Spawnable")
 		void SpawnCube();
+
+	FTimerHandle Ticker;
 };

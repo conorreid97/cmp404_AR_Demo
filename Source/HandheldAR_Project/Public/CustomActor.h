@@ -25,6 +25,9 @@ public:
 	UPROPERTY(Category = "myCategory", VisibleAnywhere, BlueprintReadWrite)
 		UStaticMeshComponent* StaticMeshComponent;
 
+	UPROPERTY(VisibleDefaultsOnly, Category = "myCategory")
+		UMaterialInstanceDynamic* ActorMaterialInstance;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -32,5 +35,10 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	virtual void PostInitializeComponents();
+
+
+
 
 };
