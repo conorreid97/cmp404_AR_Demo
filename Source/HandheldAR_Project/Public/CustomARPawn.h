@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/GameplayStatics.h"
 #include "ARBlueprintLibrary.h"
 #include "Camera/CameraComponent.h"
 #include "CustomARPawn.generated.h"
@@ -36,4 +37,8 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	// check if player has touched the screen
+	virtual void OnScreenTouch(const ETouchIndex::Type fingerIndex, const FVector screenPos);
+
+	bool WorldHitTest(FVector2D screenPos, FHitResult hitResult);
 };

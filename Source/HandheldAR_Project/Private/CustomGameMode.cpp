@@ -25,9 +25,9 @@ void ACustomGameMode::StartPlay()
 	
 
 	// spawn cube every 4 seconds
-	GetWorldTimerManager().SetTimer(Ticker, this, &ACustomGameMode::SpawnCube, 4.0f, true, 0.0f);
+	//GetWorldTimerManager().SetTimer(Ticker, this, &ACustomGameMode::SpawnCube, 4.0f, true, 0.0f);
 
-	//SpawnCube();
+	SpawnCube();
 	
 	
 	
@@ -35,8 +35,11 @@ void ACustomGameMode::StartPlay()
 
 void ACustomGameMode::Tick(float DeltaSeconds)
 {
-	//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Purple, FString::Printf(TEXT("SPAWNED")));
-	//GetWorldTimerManager().SetTimer(Ticker, this, &ACustomGameMode::SpawnCube, 4.0f, true, 0.0f);
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Purple, FString::Printf(TEXT("SPAWNED")));
+	GetWorldTimerManager().SetTimer(Ticker, this, &ACustomGameMode::SpawnCube, 4.0f, true, 0.0f);
+
+	
+	//SpawnCube();
 
 }
 
@@ -59,7 +62,7 @@ void ACustomGameMode::SpawnCube()
 
 	FActorSpawnParameters SpawnInfo;
 	FRotator myRot(0, 0, 0);
-	FVector myLoc(camLocation.X, camLocation.Y, camLocation.Z);
+	FVector myLoc(camLocation.X + 200, camLocation.Y + 200, camLocation.Z + 200);
 	ACustomActor* customActor = GetWorld()->SpawnActor<ACustomActor>(myLoc, myRot, SpawnInfo);
 
 
